@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE struts-config PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+        "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+<struts-config>
+
+    <form-beans>
+        <form-bean name="signin-form" type="com.bardiademon.struts.data.dto.SignInDto"/>
+    </form-beans>
+
+    <action-mappings>
+        <action path="/logout" type="com.bardiademon.struts.action.LogoutAction" scope="request">
+            <forward name="success" path="/template/signin.jsp"/>
+        </action>
+
+        <action path="/signin" name="signin-form" type="com.bardiademon.struts.action.SignInAction" scope="request">
+            <forward name="success" path="/template/home.jsp"/>
+            <forward name="fail" path="/template/signin.jsp"/>
+        </action>
+
+        <action path="/home" type="com.bardiademon.struts.action.HomeAction" scope="request">
+            <forward name="home" path="/template/home.jsp"/>
+            <forward name="signin" path="/template/signin.jsp"/>
+            <forward name="fail" path="/template/fail.jsp"/>
+        </action>
+    </action-mappings>
+
+    <message-resources parameter="messages"/>
+
+</struts-config>
